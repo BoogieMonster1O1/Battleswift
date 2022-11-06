@@ -12,8 +12,12 @@ public class ComputerPlayer : Player {
         var available = [[Int]]()
         for x in 0..<10 {
             for y in 0..<10 {
-                if otherPlayer.getType(x: x, y: y) == .empty {
+                switch otherPlayer.getType(x: x, y: y) {
+                case .empty, .ship:
                     available.append([x, y])
+                    break
+                default:
+                    break
                 }
             }
         }

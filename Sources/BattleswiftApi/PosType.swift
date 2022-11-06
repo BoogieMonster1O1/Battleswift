@@ -2,7 +2,7 @@ public enum PosType {
     case empty
     case hit
     case miss
-    case ship
+    case ship(ShipType)
 
     func character(showShips: Bool) -> Character {
         switch self {
@@ -14,6 +14,15 @@ public enum PosType {
             return "O"
         case .ship:
             return showShips ? "$" : "."
+        }
+    }
+
+    func isShip() -> Bool {
+        switch self {
+        case .ship:
+            return true
+        default:
+            return false
         }
     }
 }

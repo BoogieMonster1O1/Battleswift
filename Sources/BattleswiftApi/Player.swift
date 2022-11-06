@@ -14,11 +14,11 @@ open class Player {
     public func noOverlap(x: Int, y: Int, size: Int, orientation: Orientation) -> Bool {
         for i in 0..<size {
             if orientation == .horizontal {
-                if getType(x: x + i, y: y) == .ship {
+                if getType(x: x + i, y: y).isShip() {
                     return false
                 }
             } else {
-                if getType(x: x, y: y + i) == .ship {
+                if getType(x: x, y: y + i).isShip() {
                     return false
                 }
             }
@@ -62,7 +62,7 @@ open class Player {
     }
 
     public func hit(coordinates: [Int]) -> PosType {
-        if getType(x: coordinates[0], y: coordinates[1]) == .ship {
+        if getType(x: coordinates[0], y: coordinates[1]).isShip() {
             setType(x: coordinates[0], y: coordinates[1], type: .hit)
             return .hit
         } else {
@@ -74,7 +74,7 @@ open class Player {
     public func isLost() -> Bool {
         for row in board {
             for pos in row {
-                if pos == .ship {
+                if pos.isShip() {
                     return false
                 }
             }

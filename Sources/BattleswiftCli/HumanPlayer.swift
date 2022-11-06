@@ -4,15 +4,15 @@ public class HumanPlayer : Player {
     override public func inputShips() {
         var errorMessage: String? = nil
         var i: Int = 0
-        while i < ClientGame.sizes.count {
-            let size = ClientGame.sizes[i]
+        while i < ShipType.allCases.count {
+            let shipType = ShipType.allCases[i]
             do {
                 print("\u{001B}[2J")
                 self.display(showShips: true)
                 if let errorMessage = errorMessage {
                     print(errorMessage)
                 }
-                print("Enter the coordinates of your \(size) ship:")
+                print("Enter the coordinates of your \(shipType.getName()) (\(shipType.getSize())):")
                 let input = readLine()
 
                 guard let input = input else {
@@ -46,18 +46,18 @@ public class HumanPlayer : Player {
                 guard x1 >= 0 && x1 < 10 && y1 >= 0 && y1 < 10 && x2 >= 0 && x2 < 10 && y2 >= 0 && y2 < 10 else {
                     throw InputError.OutOfBounds
                 }
-                guard abs(x1 - x2) + abs(y1 - y2) + 1 == size else {
+                guard abs(x1 - x2) + abs(y1 - y2) + 1 == shipType.getSize() else {
                     throw InputError.WrongSize
                 }
                 let orientation: Orientation = x1 == x2 ? Orientation.vertical : Orientation.horizontal
-                guard noOverlap(x: x1, y: y1, size: size, orientation: orientation) else {
+                guard noOverlap(x: x1, y: y1, size: shipType.getSize(), orientation: orientation) else {
                     throw InputError.Overlapping
                 }
-                for j in 0..<size {
+                for j in 0..<shipType.getSize() {
                     if orientation == .horizontal {
-                        setType(x: x1 + j, y: y1, type: .ship)
+                        setType(x: x1 + j, y: y1, type: .ship(shipType))
                     } else {
-                        setType(x: x1, y: y1 + j, type: .ship)
+                        setType(x: x1, y: y1 + j, type: .ship(shipType))
                     }
                 }
                 i += 1
@@ -70,7 +70,7 @@ public class HumanPlayer : Player {
             } catch InputError.MalformedOrientation {
                 errorMessage = "Please choose a valid orientation - ships cannot be diagonal"
             } catch InputError.WrongSize {
-                errorMessage = "The size of your ship is not \(size)"
+                errorMessage = "The size of your shipType is not \(shipType.getSize())"
             } catch InputError.OutOfBounds {
                 errorMessage = "Please enter positions within the board"
             } catch InputError.Overlapping {
