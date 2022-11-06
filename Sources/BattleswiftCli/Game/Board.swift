@@ -22,16 +22,25 @@ public class Board {
     public func display(showShips: Bool) {
         var numbers = "  "
         for i in 0..<10 {
-            numbers += "\(Character(UnicodeScalar(i + 65)!)) "
+            numbers += "\(i) "
         }
         print(numbers)
         for i in 0..<10 {
             let row = positions[i]
-            var line = "\(i) "
+            var line = "\(Character(UnicodeScalar(i + 65)!)) "
             for pos in row {
                 line += String(pos.character(showShips: showShips)) + " "
             }
             print(line)
         }
     }
+
+    public func inputShips() {
+        fatalError(String(describing: self) + " does not implement inputShips()")
+    }
+}
+
+enum Orientation {
+    case horizontal
+    case vertical
 }
