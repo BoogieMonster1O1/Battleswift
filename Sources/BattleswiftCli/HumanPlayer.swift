@@ -1,6 +1,6 @@
 import BattleswiftApi
 
-public class PlayerBoard : Board {
+public class HumanPlayer : Player {
     override public func inputShips() {
         var errorMessage: String? = nil
         var i: Int = 0
@@ -79,6 +79,34 @@ public class PlayerBoard : Board {
                 errorMessage = "An unknown error occurred"
             }
         }
+    }
+
+    override public func nextShot(): int[] {
+        print("Enter the coordinates of your next shot: ")
+        let input = readLine()
+        guard let input = input else {
+            print("Please enter a value")
+            return nextShot()
+        }
+        if input.count != 2 {
+            print("The size of your input string is not 2 characters")
+            return nextShot()
+        }
+        let xIndex = input.startIndex
+        let yIndex = input.index(after: xIndex)
+        let xChar = input[xIndex]
+        let yChar = input[yIndex]
+        guard xChar.isASCII && xChar.isUppercase && yChar.isASCII && yChar.isNumber else {
+            print("Please enter valid positions")
+            return nextShot()
+        }
+        let x = Int(xChar.asciiValue! - 65)
+        let y = Int(String(yChar))!
+        guard x >= 0 && x < 10 && y >= 0 && y < 10 else {
+            print("Please enter positions within the board")
+            return nextShot()
+        }
+        return [x, y]
     }
 }
 

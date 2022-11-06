@@ -1,5 +1,5 @@
-open class Board {
-    private final var positions: [[PosType]] = [[PosType]]()
+open class Player {
+    private final var board: [[PosType]] = [[PosType]]()
 
     public init() {
         for _ in 0..<10 {
@@ -7,7 +7,7 @@ open class Board {
             for _ in 0..<10 {
                 row.append(PosType.empty)
             }
-            positions.append(row)
+            board.append(row)
         }
     }
 
@@ -27,11 +27,11 @@ open class Board {
     }
 
     public func getType(x: Int, y: Int) -> PosType {
-        return positions[x][y]
+        return board[x][y]
     }
 
     public func setType(x: Int, y: Int, type: PosType) {
-        positions[x][y] = type
+        board[x][y] = type
     }
 
     public func display(showShips: Bool) {
@@ -41,7 +41,7 @@ open class Board {
         }
         print(numbers)
         for i in 0..<10 {
-            let row = positions[i]
+            let row = board[i]
             var line = "\(Character(UnicodeScalar(i + 65)!)) "
             for pos in row {
                 line += String(pos.character(showShips: showShips)) + " "
@@ -52,6 +52,10 @@ open class Board {
 
     open func inputShips() {
         fatalError(String(describing: self) + " does not implement inputShips()")
+    }
+
+    open func nextShot() -> [Int] {
+        fatalError(String(describing: self) + " does not implement nextShot()")
     }
 }
 
