@@ -24,7 +24,7 @@ public class ClientGame {
             print("")
             print("\(player1Board.getName()): ")
             player1Board.display(showShips: true)
-            let player1Coordinates: [Int] = player1Board.nextShot(otherPlayer: player2Board)
+            let player1Coordinates: [Int] = player1Board.nextShot()
             let player1Status = player2Board.hit(coordinates: player1Coordinates)
             player1Board.onAction(coordinates: player1Coordinates, type: player1Status)
             if (player2Board.isLost()) {
@@ -32,7 +32,7 @@ public class ClientGame {
                 break
             }
 
-            let player2Coordinates: [Int] = player2Board.nextShot(otherPlayer: player1Board)
+            let player2Coordinates: [Int] = player2Board.nextShot()
             let player2Status = player1Board.hit(coordinates: player2Coordinates)
             player2Board.onAction(coordinates: player2Coordinates, type: player2Status)
             message = "\(player2Board.getName()) played \(Character(UnicodeScalar(player2Coordinates[0] + 65)!)), \(player2Coordinates[1])"

@@ -3,7 +3,7 @@ public class ComputerPlayer : Player {
         // TODO
     }
 
-    open override func nextShot(otherPlayer: Player) -> [Int] {
+    open override func nextShot() -> [Int] {
         // TODO
         return [0, 0]
     }
