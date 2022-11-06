@@ -4,10 +4,10 @@ build:
 	swift build
 
 cli: build
-	.build/x86_64-unknown-linux-gnu/debug/BattleswiftCli
+	$(shell swift build --show-bin-path)/BattleswiftCli
 
 server: build
-	.build/x86_64-unknown-linux-gnu/debug/BattleswiftServer
+	$(shell swift build --show-bin-path)/BattleswiftServer
 
 prerequisites: build
 
