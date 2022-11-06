@@ -1,4 +1,4 @@
-public class Board {
+open class Board {
     private final var positions: [[PosType]] = [[PosType]]()
 
     public init() {
@@ -9,6 +9,21 @@ public class Board {
             }
             positions.append(row)
         }
+    }
+
+    public func noOverlap(x: Int, y: Int, size: Int, orientation: Orientation) -> Bool {
+        for i in 0..<size {
+            if orientation == .horizontal {
+                if getType(x: x + i, y: y) == .ship {
+                    return false
+                }
+            } else {
+                if getType(x: x, y: y + i) == .ship {
+                    return false
+                }
+            }
+        }
+        return true
     }
 
     public func getType(x: Int, y: Int) -> PosType {
@@ -35,12 +50,12 @@ public class Board {
         }
     }
 
-    public func inputShips() {
+    open func inputShips() {
         fatalError(String(describing: self) + " does not implement inputShips()")
     }
 }
 
-enum Orientation {
+public enum Orientation {
     case horizontal
     case vertical
 }

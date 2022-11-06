@@ -1,19 +1,6 @@
-public class PlayerBoard : Board {
-    private func noOverlap(x: Int, y: Int, size: Int, orientation: Orientation) -> Bool {
-        for i in 0..<size {
-            if orientation == .horizontal {
-                if getType(x: x + i, y: y) == .ship {
-                    return false
-                }
-            } else {
-                if getType(x: x, y: y + i) == .ship {
-                    return false
-                }
-            }
-        }
-        return true
-    }
+import BattleswiftApi
 
+public class PlayerBoard : Board {
     override public func inputShips() {
         var errorMessage: String? = nil
         var i: Int = 0
