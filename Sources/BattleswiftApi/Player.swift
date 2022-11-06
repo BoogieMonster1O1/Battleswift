@@ -54,8 +54,36 @@ open class Player {
         fatalError(String(describing: self) + " does not implement inputShips()")
     }
 
-    open func nextShot() -> [Int] {
+    open func nextShot(otherPlayer: Player) -> [Int] {
         fatalError(String(describing: self) + " does not implement nextShot()")
+    }
+
+    public func onAction(coordinates: [Int], type: PosType) {
+    }
+
+    public func hit(coordinates: [Int]) -> PosType {
+        if getType(x: coordinates[0], y: coordinates[1]) == .ship {
+            setType(x: coordinates[0], y: coordinates[1], type: .hit)
+            return .hit
+        } else {
+            setType(x: coordinates[0], y: coordinates[1], type: .miss)
+            return .miss
+        }
+    }
+
+    public func isLost() -> Bool {
+        for row in board {
+            for pos in row {
+                if pos == .ship {
+                    return false
+                }
+            }
+        }
+        return true
+    }
+
+    open func getName() -> String {
+        return "Player"
     }
 }
 

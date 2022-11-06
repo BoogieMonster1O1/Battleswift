@@ -81,16 +81,16 @@ public class HumanPlayer : Player {
         }
     }
 
-    override public func nextShot(): int[] {
+    override public func nextShot(otherPlayer: Player) -> [Int] {
         print("Enter the coordinates of your next shot: ")
         let input = readLine()
         guard let input = input else {
             print("Please enter a value")
-            return nextShot()
+            return nextShot(otherPlayer: otherPlayer)
         }
         if input.count != 2 {
             print("The size of your input string is not 2 characters")
-            return nextShot()
+            return nextShot(otherPlayer: otherPlayer)
         }
         let xIndex = input.startIndex
         let yIndex = input.index(after: xIndex)
@@ -98,15 +98,19 @@ public class HumanPlayer : Player {
         let yChar = input[yIndex]
         guard xChar.isASCII && xChar.isUppercase && yChar.isASCII && yChar.isNumber else {
             print("Please enter valid positions")
-            return nextShot()
+            return nextShot(otherPlayer: otherPlayer)
         }
         let x = Int(xChar.asciiValue! - 65)
         let y = Int(String(yChar))!
         guard x >= 0 && x < 10 && y >= 0 && y < 10 else {
             print("Please enter positions within the board")
-            return nextShot()
+            return nextShot(otherPlayer: otherPlayer)
         }
         return [x, y]
+    }
+
+    override public func getName() -> String {
+        return "You"
     }
 }
 
