@@ -7,7 +7,7 @@ public class PlayerBoard : Board {
         while i < ClientGame.sizes.count {
             let size = ClientGame.sizes[i]
             do {
-                print("\u{000C}")
+                print("\u{001B}[2J")
                 self.display(showShips: true)
                 if let errorMessage = errorMessage {
                     print(errorMessage)
