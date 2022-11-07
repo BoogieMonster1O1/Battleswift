@@ -16,5 +16,7 @@ Singleplayer is against a computer opponent. Two different difficulty levels are
 
 ### Multiplayer
 Allows connecting to a dedicated server or a client with a server running locally. Uses web socket.  
+
 A single dedicated server can support multiple games. Each player is paired with the next person that joins.  
+
 In the case of a server being run by a client, only a single client can join.
