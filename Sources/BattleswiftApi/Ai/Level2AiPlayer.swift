@@ -1,4 +1,4 @@
-// Random Placement, Hunt + Parity Algorithm, and Random Targeting
+// Random Placement, Hunt Algorithm, and Probabilistic Targeting
 public class Level2AiPlayer: ComputerPlayer {
     open override func inputShips() {
         // TODO
