@@ -35,6 +35,15 @@ public enum PosType {
         }
     }
 
+    func isAttacked() -> Bool {
+        switch self {
+        case .hit, .miss:
+            return true
+        default:
+            return false
+        }
+    }
+
     func getShipType() -> ShipType {
         switch self {
         case .ship(let shipType):

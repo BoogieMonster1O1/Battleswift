@@ -78,7 +78,7 @@ open class Player {
         fatalError(String(describing: self) + " does not implement nextShot()")
     }
 
-    public func onAction(coordinates: [Int], type: PosType) {
+    open func onAction(coordinates: [Int], type: PosType) {
         partialOtherBoard[coordinates[0]][coordinates[1]] = type
     }
 

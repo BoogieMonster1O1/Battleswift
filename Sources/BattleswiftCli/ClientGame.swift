@@ -7,7 +7,7 @@ public class ClientGame {
 
     public init() {
         player1Board = HumanPlayer()
-        player2Board = Level1AiPlayer()
+        player2Board = Level2AiPlayer()
     }
 
     public func start() {
