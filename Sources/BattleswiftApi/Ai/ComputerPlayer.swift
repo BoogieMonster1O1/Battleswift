@@ -1,18 +1,9 @@
-public class ComputerPlayer : Player {
-    open override func inputShips() {
-        // TODO
-    }
-
-    open override func nextShot(otherShot: [Int]?, otherPlayerName: String) -> [Int] {
-        // TODO
-        return [0, 0]
-    }
-
-    private func getAvailableShots(otherPlayer: Player) -> [[Int]] {
+open class ComputerPlayer : Player {
+    public func getAvailableShots() -> [[Int]] {
         var available = [[Int]]()
         for x in 0..<10 {
             for y in 0..<10 {
-                switch otherPlayer.getType(x: x, y: y) {
+                switch self.partialOtherBoard[x][y] {
                 case .empty, .ship:
                     available.append([x, y])
                     break
