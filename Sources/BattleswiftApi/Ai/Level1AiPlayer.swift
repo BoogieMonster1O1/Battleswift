@@ -1,6 +1,6 @@
 import Foundation
 
-// Random Placement, Hunt Algorithm, and Parity Targeting
+// Random Placement, Hunt + Parity Targeting
 public class Level1AiPlayer: ComputerPlayer {
     private final var huntStack = [[Int]]()
     private final var fiveParity = [[Int]]()

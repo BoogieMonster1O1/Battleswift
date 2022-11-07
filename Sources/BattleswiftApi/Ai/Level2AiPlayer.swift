@@ -1,4 +1,4 @@
-// Random Placement, Hunt Algorithm, and Probabilistic Targeting
+// Random Placement and Probabilistic Targeting
 public class Level2AiPlayer: ComputerPlayer {
     open override func inputShips() {
         let available = self.getAvailableShots();
