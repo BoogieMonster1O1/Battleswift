@@ -1,5 +1,6 @@
 do {
-    try ServerProperties.load()
+    let props = try ServerProperties.load()
+    let server = DedicatedServer(props)
 } catch PropertiesError.fileNotFound {
     print("server.properties not found. Created a new one. Please edit it and restart the server.")
 } catch PropertiesError.malformedProperties {
