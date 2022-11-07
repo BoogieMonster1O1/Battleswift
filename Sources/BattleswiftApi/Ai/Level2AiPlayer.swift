@@ -70,7 +70,6 @@ public class Level2AiPlayer: ComputerPlayer {
 
     private func generateHeatmap() -> [[Int]] {
         let sunkShipCoordinates = getSunkShipCoordinates()
-        print(sunkShipCoordinates)
         var heatMap = [[Int]]()
         for _ in 0..<10 {
             var row = [Int]()

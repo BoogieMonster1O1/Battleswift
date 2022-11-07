@@ -15,6 +15,8 @@ let package = Package(
         .target(name: "BattleswiftApi", dependencies: []),
         .executableTarget(name: "BattleswiftServer", dependencies: ["BattleswiftApi"]),
         .executableTarget(name: "BattleswiftCli", dependencies: ["BattleswiftApi", "BattleswiftServer"]),
-        .testTarget(name: "BattleswiftCliTests", dependencies: ["BattleswiftCli"]),
+        .testTarget(name: "BattleswiftApiTests", dependencies: [
+            "BattleswiftApi",
+        ]),
     ]
 )
