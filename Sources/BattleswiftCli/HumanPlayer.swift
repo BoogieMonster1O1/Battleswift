@@ -81,16 +81,30 @@ public class HumanPlayer : Player {
         }
     }
 
-    override public func nextShot() -> [Int] {
+    override public func nextShot(otherShot: [Int]?, otherPlayerName: String) -> [Int] {
+        print("\u{001B}[2J")
+        if let otherShot = otherShot {
+            print("\(otherPlayerName) played \(Character(UnicodeScalar(otherShot[0] + 65)!))\(otherShot[1])")
+        }
+        print("")
+        print("\(otherPlayerName): ")
+        Player.display(types: self.partialOtherBoard, showShips: false)
+        print("")
+        print("\(self.getName()): ")
+        self.display(showShips: true)
+        return inputNextShot()
+    }
+
+    private func inputNextShot() -> [Int] {
         print("Enter the coordinates of your next shot: ")
         let input = readLine()
         guard let input = input else {
             print("Please enter a value")
-            return nextShot()
+            return inputNextShot()
         }
         if input.count != 2 {
             print("The size of your input string is not 2 characters")
-            return nextShot()
+            return inputNextShot()
         }
         let xIndex = input.startIndex
         let yIndex = input.index(after: xIndex)
@@ -98,19 +112,27 @@ public class HumanPlayer : Player {
         let yChar = input[yIndex]
         guard xChar.isASCII && xChar.isUppercase && yChar.isASCII && yChar.isNumber else {
             print("Please enter valid positions")
-            return nextShot()
+            return inputNextShot()
         }
         let x = Int(xChar.asciiValue! - 65)
         let y = Int(String(yChar))!
         guard x >= 0 && x < 10 && y >= 0 && y < 10 else {
             print("Please enter positions within the board")
-            return nextShot()
+            return inputNextShot()
         }
         return [x, y]
     }
 
     override public func getName() -> String {
         return "You"
+    }
+
+    override open func lose() {
+        print("You lose!")
+    }
+
+    override open func win() {
+        print("You win!")
     }
 }
 

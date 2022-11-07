@@ -1,6 +1,6 @@
 public enum PosType {
     case empty
-    case hit
+    case hit(ShipType)
     case miss
     case ship(ShipType)
 
@@ -23,6 +23,17 @@ public enum PosType {
             return true
         default:
             return false
+        }
+    }
+
+    func getShipType() -> ShipType {
+        switch self {
+        case .ship(let shipType):
+            return shipType
+        case .hit(let shipType):
+            return shipType
+        default:
+            fatalError()
         }
     }
 }

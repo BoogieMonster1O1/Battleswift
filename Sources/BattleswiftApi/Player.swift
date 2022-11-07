@@ -1,6 +1,6 @@
 open class Player {
     private final var board: [[PosType]] = [[PosType]]()
-    private final var partialOtherBoard: [[PosType]] = [[PosType]]()
+    public final var partialOtherBoard: [[PosType]] = [[PosType]]()
 
     public init() {
         for _ in 0..<10 {
@@ -43,13 +43,17 @@ open class Player {
     }
 
     public func display(showShips: Bool) {
+        return Player.display(types: self.board, showShips: true)
+    }
+
+    public static func display(types: [[PosType]], showShips: Bool) {
         var numbers = "  "
         for i in 0..<10 {
             numbers += "\(i) "
         }
         print(numbers)
         for i in 0..<10 {
-            let row = board[i]
+            let row = types[i]
             var line = "\(Character(UnicodeScalar(i + 65)!)) "
             for pos in row {
                 line += String(pos.character(showShips: showShips)) + " "
@@ -58,11 +62,19 @@ open class Player {
         }
     }
 
+    open func lose() {
+        // NO-OP
+    }
+
+    open func win() {
+        // NO-OP
+    }
+
     open func inputShips() {
         fatalError(String(describing: self) + " does not implement inputShips()")
     }
 
-    open func nextShot() -> [Int] {
+    open func nextShot(otherShot: [Int]?, otherPlayerName: String) -> [Int] {
         fatalError(String(describing: self) + " does not implement nextShot()")
     }
 
@@ -72,8 +84,9 @@ open class Player {
 
     public func hit(coordinates: [Int]) -> PosType {
         if getType(x: coordinates[0], y: coordinates[1]).isShip() {
-            setType(x: coordinates[0], y: coordinates[1], type: .hit)
-            return .hit
+            let type = getType(x: coordinates[0], y: coordinates[1]).getShipType()
+            setType(x: coordinates[0], y: coordinates[1], type: .hit(type))
+            return .hit(type)
         } else {
             setType(x: coordinates[0], y: coordinates[1], type: .miss)
             return .miss
