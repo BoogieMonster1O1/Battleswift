@@ -1,10 +1,4 @@
-let shipSizes = [
-    5 /* Carrier */,
-    4 /* Battleship */,
-    3 /* Cruiser */,
-    3 /* Submarine */,
-    2 /* Destroyer */
-]
+import BattleswiftApi
 
 print("Welcome to Battleswift!")
 print("Choose a game mode:")
@@ -21,6 +15,7 @@ switch choice {
 case "1":
     print("not implemented yet")
 case "2":
+    let server = IntegratedServer(player2: Level2AiPlayer())
     let game = ClientGame()
     game.start()
 case "3":
