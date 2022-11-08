@@ -15,7 +15,7 @@ switch choice {
 case "1":
     print("not implemented yet")
 case "2":
-    // let server = IntegratedServer(player2: Level2AiPlayer())
+    let server = IntegratedServer(player2: Level2AiPlayer()) // TODO
     let game = ClientGame()
     game.start()
 case "3":

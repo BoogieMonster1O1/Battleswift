@@ -1,6 +1,6 @@
 open class Player {
-    public final var board: [[PosType]] = [[PosType]]()
-    public final var partialOtherBoard: [[PosType]] = [[PosType]]()
+    public var board: [[PosType]] = [[PosType]]()
+    public var partialOtherBoard: [[PosType]] = [[PosType]]()
 
     public init() {
         for _ in 0..<10 {

@@ -28,8 +28,6 @@ public class Level1AiPlayer: ComputerPlayer {
                 }
             }
         }
-        let thing = readLine()
-        print(thing)
     }
 
     open override func inputShips() {
@@ -65,7 +63,7 @@ public class Level1AiPlayer: ComputerPlayer {
     open override func nextShot(otherShot: [Int]?, otherPlayerName: String) -> [Int] {
         let available = self.getAvailableShots()
         var parityList = getParityList(size: getSmallestUnsunkSize())
-        var paritySet = Set(parityList).intersection(Set(available))
+        let paritySet = Set(parityList).intersection(Set(available))
         if lastShot == nil || huntStack.count == 0 {
             self.lastShot = paritySet.shuffled().first!
             parityList.remove(at: parityList.firstIndex(of: self.lastShot!)!)

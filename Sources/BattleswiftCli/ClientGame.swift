@@ -1,13 +1,21 @@
 import BattleswiftApi
 
-public class ClientGame {
+public class ClientGame: Game {
     public static let sizes = [5, 4, 3, 3, 2];
     public final let player1Board: Player
     public final let player2Board: Player
 
     public init() {
-        player1Board = HumanPlayer()
+        player1Board = ClientPlayer()
         player2Board = Level2AiPlayer()
+    }
+
+    public func preInit() {
+
+    }
+
+    public func tick() {
+        
     }
 
     public func start() {

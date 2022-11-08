@@ -2,6 +2,7 @@ import Foundation
 
 public class ServerPlayer: Player {
     public let uuid: UUID
+    public var game: ServerGame? = nil
 
     public init(_ uuid: UUID) {
         self.uuid = uuid
