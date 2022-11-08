@@ -1,3 +1,5 @@
+import BattleswiftApi
+
 do {
     let props = try ServerProperties.load()
     let server = DedicatedServer(props)

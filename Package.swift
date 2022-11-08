@@ -14,7 +14,7 @@ let package = Package(
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .target(name: "BattleswiftApi", dependencies: []),
         .executableTarget(name: "BattleswiftServer", dependencies: ["BattleswiftApi"]),
-        .executableTarget(name: "BattleswiftCli", dependencies: ["BattleswiftApi", "BattleswiftServer"]),
+        .executableTarget(name: "BattleswiftCli", dependencies: ["BattleswiftApi"]),
         .testTarget(name: "BattleswiftApiTests", dependencies: [
             "BattleswiftApi",
         ]),

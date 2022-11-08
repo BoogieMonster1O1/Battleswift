@@ -1,5 +1,5 @@
 open class Player {
-    private final var board: [[PosType]] = [[PosType]]()
+    public final var board: [[PosType]] = [[PosType]]()
     public final var partialOtherBoard: [[PosType]] = [[PosType]]()
 
     public init() {

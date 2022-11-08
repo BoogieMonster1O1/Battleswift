@@ -1,5 +1,3 @@
-import BattleswiftApi
-
 open class BaseServer {
     private let properties: ServerProperties
     private var players: [Player] = []

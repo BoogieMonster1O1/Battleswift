@@ -1,6 +1,13 @@
 import BattleswiftApi
+import Foundation
 
 public class HumanPlayer : Player {
+    public let uuid: UUID
+
+    public override init() {
+        self.uuid = UUID.init()
+    }
+
     override public func inputShips() {
         var errorMessage: String? = nil
         var i: Int = 0
